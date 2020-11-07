@@ -1,73 +1,42 @@
 {
     "AttributeDefinitions": [
         {
-            "AttributeName": "",
+            "AttributeName": "id",
             "AttributeType": "S"
-        }
+        },
+        {
+            "AttributeName": "userId",
+            "AttributeType": "S"
+          }
     ],
-    "TableName": "",
+    "TableName": "message",
     "KeySchema": [
         {
-            "AttributeName": "",
-            "KeyType": "RANGE"
-        }
-    ],
-    "LocalSecondaryIndexes": [
-        {
-            "IndexName": "",
-            "KeySchema": [
-                {
-                    "AttributeName": "",
-                    "KeyType": "HASH"
-                }
-            ],
-            "Projection": {
-                "ProjectionType": "INCLUDE",
-                "NonKeyAttributes": [
-                    ""
-                ]
-            }
+            "AttributeName": "id",
+            "KeyType": "HASH"
         }
     ],
     "GlobalSecondaryIndexes": [
         {
-            "IndexName": "",
+            "IndexName": "UserIndex",
             "KeySchema": [
                 {
-                    "AttributeName": "",
+                    "AttributeName": "userId",
                     "KeyType": "HASH"
                 }
             ],
             "Projection": {
-                "ProjectionType": "KEYS_ONLY",
-                "NonKeyAttributes": [
-                    ""
-                ]
+                "ProjectionType": "ALL"
             },
             "ProvisionedThroughput": {
-                "ReadCapacityUnits": 0,
-                "WriteCapacityUnits": 0
+                "ReadCapacityUnits": 1,
+                "WriteCapacityUnits": 1
             }
         }
     ],
     "BillingMode": "PROVISIONED",
     "ProvisionedThroughput": {
-        "ReadCapacityUnits": 0,
-        "WriteCapacityUnits": 0
-    },
-    "StreamSpecification": {
-        "StreamEnabled": true,
-        "StreamViewType": "NEW_IMAGE"
-    },
-    "SSESpecification": {
-        "Enabled": true,
-        "SSEType": "KMS",
-        "KMSMasterKeyId": ""
-    },
-    "Tags": [
-        {
-            "Key": "",
-            "Value": ""
-        }
-    ]
+        "ReadCapacityUnits": 1,
+        "WriteCapacityUnits": 1
+    }
 }
