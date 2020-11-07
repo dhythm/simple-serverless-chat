@@ -6,7 +6,8 @@
 
 ```
 sam init --runtime nodejs12.x
-npm i -D webpack webpack-cli typescript ts-node awesome-typescript-loader aws-sdk glob typesync
+# webpack 5 doesn't work well at the moment for AWS SAM
+npm i -D webpack@4.42.1 webpack-cli typescript ts-node awesome-typescript-loader aws-sdk glob typesync
 npm i -D @types/node @types/webpack @types/aws-lambda
 
 touch webpack.config.ts
