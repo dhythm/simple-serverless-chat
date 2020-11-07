@@ -1,5 +1,5 @@
-import { sync } from 'glob';
 import { resolve } from 'path';
+import { sync } from 'glob';
 import * as Webpack from 'webpack';
 
 const SRC_PATH = resolve(__dirname, './src/handlers/');
