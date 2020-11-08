@@ -51,3 +51,6 @@ export {
   Typography,
   makeStyles,
 } from '@material-ui/core';
+
+export { Loading } from './atoms/Loading';
+export { TextInput } from './organisms/TextInput';
