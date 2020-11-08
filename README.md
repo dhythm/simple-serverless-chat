@@ -2,6 +2,35 @@
 
 ## frontend
 
+```
+touch README.md .gitignore
+
+npm init -y
+yarn add react react-dom
+yarn add -D @babel/core @babel/cli @babel/preset-env @babel/preset-react
+touch .babelrc
+yarn add -D webpack webpack-cli webpack-dev-server style-loader css-loader babel-loader url-loader file-loader dotenv-webpack tsconfig-paths-webpack-plugin
+touch webpack.config.js
+
+yarn add -D typescript ts-loader typesync
+npx tsc --init
+yarn add -D eslint prettier eslint-config-prettier eslint-plugin-prettier eslint-loader eslint-plugin-import eslint-plugin-unused-imports eslint-plugin-sort-export-all
+npx eslint --init
+touch .prettierrc
+yarn install
+npx sb init
+rm -rf stories
+touch .storybook/webpack.config.js
+
+mkdir public src
+touch public/index.html
+touch .env
+
+mkdir -p src/app/{pages,assets,lib}
+mkdir -p src/core/{components,assets,lib}
+touch src/{index,App}.tsx
+```
+
 ## backend
 
 ### Getting started for AWS SAM
