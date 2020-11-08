@@ -1,57 +1,17 @@
 env:
   browser: true
-  es2020: true
+  es2021: true
 extends:
-  - "plugin:prettier/recommended"
-  - "prettier/@typescript-eslint"
-  - "prettier/react"
-parser: "@typescript-eslint/parser"
+  - 'eslint:recommended'
+  - 'plugin:react/recommended'
+  - 'plugin:@typescript-eslint/recommended'
+parser: '@typescript-eslint/parser'
 parserOptions:
   ecmaFeatures:
     jsx: true
-  ecmaVersion: 11
+  ecmaVersion: 12
   sourceType: module
 plugins:
   - react
-  - "@typescript-eslint"
-  - import
-  - unused-imports
-  - sort-export-all
-rules:
-  sort-imports: 0
-  "import/order":
-    - warn
-    - groups:
-        - builtin
-        - external
-        - internal
-      alphabetize:
-        order: asc
-  no-restricted-imports:
-    - error
-    - patterns:
-        - "@material-ui/*"
-  sort-export-all/sort-export-all: off
-  "@typescript-eslint/no-unused-vars": off
-  unused-imports/no-unused-imports-ts: warn
-  # unused-imports/no-unused-var-ts:
-  #   - warn
-  #   - wars: 'all'
-  #     varsIgnorePattern: '^_'
-  #     args: 'after-used'
-  #     argsIgnorePattern: '^_'
-  react/jsx-uses-react: warn
-  react/jsx-uses-vars: warn
-overrides:
-  - files:
-      - "**/*.tsx"
-    rules:
-      react/prop-types: "off"
-  - files:
-      - "**/*.js"
-    rules:
-      prettier/prettier: "off"
-  - files:
-      - "**/index.{ts,js}"
-    rules:
-      sort-export-all/sort-export-all: warn
+  - '@typescript-eslint'
+rules: {}

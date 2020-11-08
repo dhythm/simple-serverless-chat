@@ -13,12 +13,15 @@ yarn add -D webpack webpack-cli webpack-dev-server style-loader css-loader babel
 touch webpack.config.js
 
 yarn add -D typescript ts-loader typesync
-npx tsc --init
-yarn add -D eslint prettier eslint-config-prettier eslint-plugin-prettier eslint-loader eslint-plugin-import eslint-plugin-unused-imports eslint-plugin-sort-export-all
-npx eslint --init
+yarn run tsc --init
+# npx tsc --init
+yarn add -D eslint eslint-plugin-react prettier eslint-config-prettier eslint-plugin-prettier eslint-loader eslint-plugin-import eslint-plugin-unused-imports eslint-plugin-sort-export-all
+yarn run eslint --init
+# npx eslint --init
 touch .prettierrc
 yarn install
-npx sb init
+yarn run sb init
+# npx sb init
 rm -rf stories
 touch .storybook/webpack.config.js
 
@@ -29,6 +32,10 @@ touch .env
 mkdir -p src/app/{pages,assets,lib}
 mkdir -p src/core/{components,assets,lib}
 touch src/{index,App}.tsx
+```
+
+```
+yarn add @material-ui/core @material-ui/icons styled-components formik yup i18next react-i18next react-lottie
 ```
 
 ## backend
