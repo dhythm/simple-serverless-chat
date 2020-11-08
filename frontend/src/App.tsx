@@ -1,11 +1,8 @@
+import { ChatPage } from '@app/pages/ChatPage';
 import React from 'react';
 
 const App: React.FunctionComponent = () => {
-  return (
-    <div>
-      <p>Hello, World</p>
-    </div>
-  );
+  return <ChatPage />;
 };
 
 export default App;
