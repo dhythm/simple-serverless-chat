@@ -76,4 +76,21 @@ aws dynamodb create-table --cli-input-json file://dynamodb/table.json --endpoint
 aws dynamodb list-tables --endpoint-url http://localhost:8000
 aws dynamodb put-item --item file://dynamodb/xxxx.json --endpoint-url http://localhost:8000 --table-name TABLE_NAME
 aws dynamodb delete-table --endpoint-url http://localhost:8000 --table-name TABLE_NAME
+
+aws dynamodb scan --table-name TABLE_NAME --endpoint-url http://localhost:8000
+```
+
+### To run AWS SAM on local
+
+```
+sam local invoke FUNCTION_IDENTIFER
+sam local invoke --docker-network NETWORK_NAME FUNCTION_IDENTIFER
+
+sam local start-api
+sam local start-api --docker-network NETWORK_NAME
+
+# Others
+sam local generate-event
+sam local start-lambda
+sam validate
 ```

@@ -12,17 +12,29 @@ Description: >-
 Transform:
 - AWS::Serverless-2016-10-31
 
+Globals:
+  Api:
+    Cors:
+      AllowMethods: "'OPTIONS,POST,GET'"
+      AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+      AllowOrigin: "'*'"
+  Function:
+    Timeout: 5
+    Environment:
+      Variables:
+        TABLE_MESSAGE: 'message'
+
 # Resources declares the AWS resources that you want to include in the stack
 # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resources-section-structure.html
 Resources:
   # Each Lambda function is defined by properties:
   # https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
 
-  helloFromLambdaTSFunction:
+  getMessageFunction:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: dist/
-      Handler: hello-from-lambda.lambdaHandler
+      Handler: get-message.lambdaHandler
       Runtime: nodejs12.x
       MemorySize: 128
       Timeout: 100
@@ -30,3 +42,27 @@ Resources:
       Policies:
         # Give Lambda basic execution Permission to the helloFromLambda
         - AWSLambdaBasicExecutionRole
+      Events:
+        GetMessage:
+          Type: Api
+          Properties:
+            Path: /message/get
+            Method: get
+  addMessageFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: dist/
+      Handler: add-message.lambdaHandler
+      Runtime: nodejs12.x
+      MemorySize: 128
+      Timeout: 100
+      Description: A Lambda function that returns a static string.
+      Policies:
+        # Give Lambda basic execution Permission to the helloFromLambda
+        - AWSLambdaBasicExecutionRole
+      Events:
+        AddMessage:
+          Type: Api
+          Properties:
+            Path: /message/add
+            Method: post

@@ -9,7 +9,7 @@ const BUILD_VARIANT = process.env.NODE_ENV;
 
 const resolveEntry = (): Webpack.Entry => {
   const entries: { [key: string]: string } = {};
-  const targets: string[] = sync(`${SRC_PATH}/*.ts`);
+  const targets: string[] = sync(`${SRC_PATH}/**/*.ts`);
   const pathRegex = new RegExp(`${SRC_PATH}/(.+).ts`);
   targets.forEach((value: string) => {
     let key: string;
