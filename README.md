@@ -130,3 +130,10 @@ sam local generate-event
 sam local start-lambda
 sam validate
 ```
+
+```
+# The first time
+sam deploy --guided
+# From the second time
+sam deploy
+```

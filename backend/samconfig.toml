@@ -1,0 +1,10 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "simple-serverless-chat"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-1v3cv79ml1b3a"
+s3_prefix = "simple-serverless-chat"
+region = "ap-northeast-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
