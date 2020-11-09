@@ -39,9 +39,10 @@ Resources:
       MemorySize: 128
       Timeout: 100
       Description: A Lambda function that returns a static string.
-      Policies:
+      # Policies:
         # Give Lambda basic execution Permission to the helloFromLambda
-        - AWSLambdaBasicExecutionRole
+        # - AWSLambdaBasicExecutionRole
+      Role: !GetAtt AWSLambdaDynamoDBReadExecutionRole.Arn
       Events:
         GetMessage:
           Type: Api
@@ -57,12 +58,65 @@ Resources:
       MemorySize: 128
       Timeout: 100
       Description: A Lambda function that returns a static string.
-      Policies:
+      # Policies:
         # Give Lambda basic execution Permission to the helloFromLambda
-        - AWSLambdaBasicExecutionRole
+        # - AWSLambdaBasicExecutionRole
+      Role: !GetAtt AWSLambdaDynamoDBWriteExecutionRole.Arn
       Events:
         AddMessage:
           Type: Api
           Properties:
             Path: /message/add
             Method: post
+  MessageTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: userId
+          AttributeType: S
+      TableName: message
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      GlobalSecondaryIndexes:
+        - IndexName: UserIndex
+          KeySchema:
+            - AttributeName: userId
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+          ProvisionedThroughput:
+            ReadCapacityUnits: 1
+            WriteCapacityUnits: 1
+      BillingMode: PROVISIONED
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
+  AWSLambdaDynamoDBReadExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: 'sts:AssumeRole'
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonDynamoDBReadOnlyAccess
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+  AWSLambdaDynamoDBWriteExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: 'sts:AssumeRole'
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
